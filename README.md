@@ -1,3 +1,59 @@
+# My contribution
+
+## <span style="color:red;">Be carefull if you want to run the code on your computer</span>
+
+* The script will <span style="color:red;">create a directory "data"</span> on your computer
+* The script will <span style="color:red;">download the 20 megas of dataset (be carefull for your internet bandwidth usage) on the first script you launch (not for other launch)</span>
+* I'm french and my default date language is french. So i <span style="color:red;">have to change locale variable</span> in order to display english name of days on plot. So i run <span style="color:red;">the function Sys.setlocale("LC_ALL","English")</span> at the beginning of all script
+
+
+* * *
+
+## Description of scripts
+
+### data.R
+
+This script is not required but i needed a function in order to load data.
+The steps of the script are describe here : 
+
+#### Goal :
+  * create a csv file which contains only data for the two days we need 
+  * if the final data not exists, it download the files, unzip and create the final file
+  * return a dataframe with datas and a datetime columns name DateFormat
+
+#### How it's works :
+* *Sys.setlocale("LC_ALL","English")* : change local in order to display correct label for days
+* Create directory "data"
+* Test if the final file exists, if not it's download the file, unzip and load it in a dataframe
+* Subset the dataframe in order to keep only the two dates "1/2/2007" and "2/2/2007"
+* Write the final CSV file if necessary
+* Concat colums date and time and format it with function *strptime*
+
+* * *
+
+### plot<n>.R
+
+All scripts plot<n>.R are created on the same model.
+**There is no function in these files, png files are create when the sources are loaded. It's a choice, i don't wanted to add a step. **
+
+1. Load the source :*data.R*
+2. get data in dataframe *data* from script data.R.
+3. initialise the PNG file whit the correct name : *plot<n>.png*.
+4. Create the plot and add title, lines or legend if necessary
+5. Close file with *dev.off()*
+
+
+#init PNG file
+data <- getData()
+
+#init PNG file
+png(file = "plot1.png", width = 480, height = 480)
+
+* * *
+
+
+# Project description (from course staff)
+
 ## Introduction
 
 This assignment uses data from
